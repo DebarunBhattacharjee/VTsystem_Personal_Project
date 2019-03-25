@@ -1,0 +1,1593 @@
+#include<graphics.h>
+#include<conio.h>
+#include<dos.h>
+#include<iostream.h>
+#include<fstream.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<process.h>
+#include<string.h>
+
+
+void intro()
+{
+ int x,y,i;
+ int g=DETECT, d;
+ initgraph(&g, &d,"C:\\TC\\BGI");
+ cleardevice();
+ x=getmaxx()/2;
+ y=getmaxy()/2;
+ settextstyle(TRIPLEX_FONT,HORIZ_DIR,3);
+ setbkcolor(rand());
+ setcolor(4);
+ int c=150;
+for(int e=0;e<15;e++)
+ {
+  for(int i=50;i<100;i++)
+  {
+   settextstyle(SMALL_FONT, HORIZ_DIR, 10);
+   outtextxy(x,y,"Loading...");
+      settextstyle(SMALL_FONT, HORIZ_DIR, 5);
+   outtextxy(x+5,y+5,"By DEBARUN");
+   setcolor(3);
+   circle(x,y,i);
+   circle(x,y,c);
+   c--;
+   cleardevice();
+  }
+  }
+  setcolor(2);
+
+ settextstyle(SMALL_FONT, HORIZ_DIR, 10);
+ settextjustify(x,y);
+  outtextxy(x-160,y-60,"VOTE ONLINE");
+  delay(150);
+  outtextxy(x-160,y-20,"PROJECT");
+  delay(500);
+  setcolor(6);
+  settextstyle(  DEFAULT_FONT, HORIZ_DIR, 4);
+  outtextxy(x-160,y+25,"VOTE MANAGER");
+  getch();
+ closegraph();
+ }
+
+
+class candidate_rec
+{ int cand_code;
+  char cand_name[30];
+  char party_name[30];
+  long int revenue;
+  int cand_age;
+  char cand_gender[2];
+  char cand_area[40];
+  int count;
+
+  public:
+
+  candidate_rec()                  // candidate_rec's constructor
+  { cand_code=0;
+    strcpy(cand_name," ");
+    strcpy(party_name," ");
+    revenue=0;
+    cand_age=0;
+    strcpy(cand_gender," ");
+    strcpy(cand_area," ");
+    count=0;
+    }
+
+  void getdata_cand()
+  {  cout<<"\n\t\tEnter candidate code: ";
+     cin>>cand_code;
+
+     cout<<"\n\t\tEnter candidate's name: ";
+     gets(cand_name);
+
+     cout<<"\n\t\tEnter the gender of the candidate: ";
+     gets(cand_gender);
+
+     cout<<"\n\t\tEnter the candidate's age: ";
+     cin>>cand_age;
+
+     cout<<"\n\t\tEnter the party name: ";
+     gets(party_name);
+
+     cout<<"\n\t\tEnter the area from where the candidate is: ";
+     gets(cand_area);
+
+     cout<<"\n\t\tEnter the revenue of the candidate: "<<"Rs. ";
+     cin>>revenue;
+
+   }
+
+
+  void showdata_cand()
+  {  cout<<"\n\t\tCandidate Code: "<<cand_code;
+
+     cout<<"\n\t\tCandidate Name: "<<cand_name;
+
+     cout<<"\n\t\tCandidate Gender: "<<cand_gender;
+
+     cout<<"\n\t\tCandidate Age: "<<cand_age;
+
+     cout<<"\n\t\tCandidate's Party Name: "<<party_name;
+
+     cout<<"\n\t\tCandidate's Area: "<<cand_area;
+
+     cout<<"\n\t\tCandidate's Revenue: "<<revenue;
+   }
+
+
+  void showdata_cand_2()
+  {  cout<<"\n\t\tCandidate Code:  "<<cand_code;
+
+     cout<<"\n\t\tCandidate Name:  "<<cand_name;
+
+     cout<<"\n\t\tCamdidate Party: "<<party_name;
+
+   }
+
+  int get_cand_code()
+  {return cand_code;}
+
+  char* get_cand_name()
+  {return cand_name;}
+
+  char* get_party_name()
+  {return party_name;}
+
+  long int get_revenue()
+  {return revenue;}
+
+  int get_cand_age()
+  {return cand_age;}
+
+  char* get_cand_gender()
+  {return cand_gender;}
+
+  char* get_cand_area()
+  {return cand_area;}
+
+  void up_cand_code()
+   { cout<<"\ntEnter the new code of the candidate: ";
+     cin>>cand_code;
+   }
+
+  void up_cand_area()
+   { cout<<"\n\tEnter the new area that the candidate is fighting for: ";
+     gets(cand_area);
+   }
+
+  void up_party_name()
+   { cout<<"\n\tEnter the new party name: ";
+     gets(party_name);
+   }
+
+  void up_count()
+   { count++;
+   }
+
+  int get_count()
+  { return count;
+   }
+
+  };
+
+
+
+
+class voter_rec
+{
+  int voter_code;
+  char voter_name[30];
+  int  voter_age;
+  char voter_gender[2];
+  int votingstat;
+
+  public:
+
+
+  voter_rec()                       //voter_rec's constructor
+  { voter_code=0;
+    strcpy(voter_name," ");
+    voter_age=0;
+    strcpy(voter_gender," ");
+    votingstat=0;
+   }
+
+  void getdata_voter()
+  {  cout<<"\n\t\tEnter voter's code: ";
+     cin>>voter_code;
+
+     cout<<"\n\t\tEnter voter's name: ";
+     gets(voter_name);
+
+     cout<<"\n\t\tEnter the gender of the voter: ";
+     cin>>voter_gender;
+
+     cout<<"\n\t\tEnter the voter's age: ";
+     cin>>voter_age;
+
+   }
+
+  void showdata_voter()
+  {
+    cout<<"\n\t\tVoter's Code: "<<voter_code;
+
+    cout<<"\n\t\tVoter's Name: "<<voter_name;
+
+    cout<<"\n\t\tVoter's Gender: "<<voter_gender;
+
+    cout<<"\n\t\tVoter's Age: "<<voter_age;
+
+   }
+
+  int get_voter_code()
+  {return voter_code;}
+
+  char* get_voter_name()
+  {return voter_name;}
+
+  int get_voter_age()
+  {return voter_age;}
+
+  char* get_voter_gender()
+  {return voter_gender;}
+
+  int get_vst()
+  {return votingstat;}
+
+  void up_vst()
+  { votingstat=1;}
+
+
+  };
+
+
+
+
+int discription()
+{char ch[30]; int pass;
+ cout<<"\n\n\tTHIS IS A PROGRAM MADE AS A CBSE PROJECT";
+ cout<<"\n\n\tTHIS PROGRAM WILL HAVE A VOTING SYSTEM";
+ cout<<"\n\n\tTHERE IS A VOTING LIST";
+ cout<<"\n\n\tVOTERS CAN SEARCH FOR THEIR NAME TO GET I CARD";
+ cout<<"\n\n\tIF VERIFIED THEY CAN CAST VOTE FOR CANDIDATES";
+ cout<<"\n\n\tTHEN THE VOTES WILL BE ADDED UP";
+ cout<<"\n\n\tAND THE RESULT WILL BE DECLARED";
+ cout<<"\n\n\tTHE WINNING CANDIDATE WILL THEN BE NAMED";
+ clrscr();
+ cout<<"\n\n\tEnter the password to unlock the program:";
+ cin>>ch;
+
+
+ if((strcmp(ch,"Debarun")==0))
+ {cout<<"\n\tCorrect password";
+  pass=1;
+  }
+  else
+  pass=0;
+  return pass;
+
+ }
+
+
+
+
+class vote
+{
+ public:
+
+ //Functions related to candidate
+
+ void display_cand_rec();
+
+ void search_cand_rec_code();
+
+ void search_cand_name();
+
+ void search_cand_name_all();
+
+ void delete_cand_rec();
+
+ void add_cand_rec();
+
+ void modify_cand_rec();
+
+ void append_cand_rec_file();
+
+ void list_cand_name();
+
+ void cand_sort();
+
+ //*****************************
+
+ void voting();      //function for voting
+ void winner();      //funtion to declare winner
+
+ //*****************************
+
+ //funtions related to voter
+
+ void add_voter_rec();
+
+ void display_voter_rec();
+
+ void search_voter_rec_code();
+
+ void search_voter_name();
+
+ void search_voter_name_all();
+
+ void delete_voter_rec();
+
+
+ void modify_voter_rec();
+
+ void append_voter_rec_file();
+
+ void list_voter_name();
+
+
+};
+
+
+
+
+
+void vote::add_cand_rec()
+{ clrscr();
+  ofstream mf;
+  mf.open("candidate.dat", ios::binary);
+
+  if(!mf)
+
+  {cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+
+  candidate_rec cr;
+
+  char ch;
+
+  do{
+     cr.getdata_cand();
+     mf.write((char*)&cr, sizeof(candidate_rec));
+     cout<<"\n\t\tSuccessfully added!";
+     cout<<"\n\t\tDo you want to enter a new item? : ";
+     cin>>ch;
+     } while(ch=='Y' || ch=='y');
+     mf.close();
+}
+
+
+
+void vote::display_cand_rec()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("candidate.dat", ios::binary|ios::in);
+
+  if(!mf)
+  {cout<<"n\n\tSTREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+
+  candidate_rec cr;
+
+  int n=1;
+
+  cout<<"\n________________________CANDIDATE INFORMATION LIST___________________________";
+
+  mf.read((char*)&cr, sizeof(candidate_rec));
+
+  while(mf)
+  {cout<<"\n\t\tRECORD NUMBER: "<<n;
+
+   cr.showdata_cand();
+
+   cout<<"\n\t\t___________________________";
+
+   mf.read((char*)&cr, sizeof(candidate_rec));
+
+   n++;
+   }
+
+   getch();
+
+
+   mf.close();
+}
+
+
+
+
+void vote::search_cand_rec_code()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("candidate.dat", ios::binary);
+
+  int f=0;
+
+  int num;
+
+  if(!mf)
+  {cout<<"\n\n\tSTREAM HASN'T BEEN CREATED!!";
+   exit(0);
+   }
+
+   cout<<"\n\t\tEnter the candidate code for whom you are searching :";
+
+   cin>>num;
+
+   candidate_rec cr;
+
+   mf.read((char*)&cr, sizeof(candidate_rec));
+
+   while(mf && f==0)
+   {
+
+     if(cr.get_cand_code() == num)
+     { cr.showdata_cand();
+       f=1;
+     }
+
+    mf.read((char*)&cr,sizeof(candidate_rec));
+
+    }
+
+    if(f==0)
+
+    cout<<"\n\t\tNo such item was to be found";
+
+    mf.close();
+
+}
+
+
+
+
+void vote::search_cand_name()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("candidate.dat",ios::binary);
+
+  int f=0;
+
+  char name[20];
+
+  if(!mf)
+  {cout<<"\n\t\tSTREAM NOT CREATED!!";
+   exit(0);
+    }
+
+  candidate_rec cr;
+
+  cout<<"\t\tEnter the name of the candidate:\n";
+
+  gets(name);
+
+  mf.read((char*)&cr, sizeof(candidate_rec));
+
+  while(mf && f==0)
+  {
+    if(strcmpi(cr.get_cand_name(),name)==0)
+    { cr.showdata_cand();
+      f=1;
+     }
+     mf.read((char*)&cr, sizeof(candidate_rec));
+   }
+
+    if(f==0)
+
+    cout<<"\n\t\tNo such candidate information was found";
+
+    mf.close();
+}
+
+
+
+
+void vote::search_cand_name_all()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("candidate.dat",ios::binary);
+
+  char name[20];
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+   candidate_rec cr;
+
+   cout<<"\n\tEnter the name of the candidate that you want to find:";
+   gets(name);
+
+   mf.read((char*)&cr, sizeof(candidate_rec));
+
+   while(mf)
+   { if(strcmpi(cr.get_cand_name(),name)==0)
+     cr.showdata_cand();
+
+     mf.read((char*)&cr, sizeof(candidate_rec));
+    }
+
+  }
+
+
+
+
+void vote::delete_cand_rec()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("candidate.dat",ios::binary);
+
+  ofstream nf;
+
+  nf.open("n_candidate.dat",ios::binary);
+
+  char name[20];
+
+  if(!mf || !nf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+   candidate_rec cr;
+
+   int num,f=0;
+
+   cout<<"\n\t\tEnter the code of the candidate: ";
+   cin>>num;
+
+   mf.read((char*)&cr, sizeof(candidate_rec));
+
+   while(mf)
+   { if(num!=cr.get_cand_code())
+     nf.write((char*)&cr, sizeof(candidate_rec));
+
+     mf.read((char*)&cr, sizeof(candidate_rec));
+    }
+
+    mf.close();
+
+    nf.close();
+
+    if(f==0)
+    cout<<"\n\t\tRecord not found for deletion";
+
+    remove("candidate.dat");
+
+    rename("n_cadidate.dat","candidate.dat");
+  }
+
+
+
+
+void vote::modify_cand_rec()
+{ clrscr();
+
+  fstream mf;
+
+  mf.open("candidate.dat",ios::binary|ios::in|ios::out);
+
+  if(!mf)
+  {cout<<"\n\t\tTHE STREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+
+  int f=0;
+
+  candidate_rec cr;
+
+  int num;
+
+  cout<<"\n\t\tEnter the candidate code of candidate to alter the candidate info : ";
+  cin>>num;
+
+  mf.read((char*)&cr,sizeof(candidate_rec));
+
+  while(mf && f==0)
+
+  {if(num==cr.get_cand_code())
+    { f=1;
+
+      long pos;
+
+      pos=mf.tellg();
+      pos-=sizeof(candidate_rec);
+      mf.seekg(pos,ios::beg);
+
+
+     //mf.seekg(-sizeof(candidate_rec), ios:cur);  better to use the other method
+
+     cr.up_cand_code();
+     cr.up_cand_area();
+     cr.up_party_name();
+     cout<<"The update has been successful";
+
+    }
+
+     mf.read((char*)&cr,sizeof(candidate_rec));
+
+   }
+
+  }
+
+
+/*void vote::up_counter(int numb)
+{ clrscr();
+  fstream mf;
+  mf.open("candidate.dat",ios::binary|ios::in|ios::out);
+  if(!mf)
+  {cout<<"\n\t\tTHE STREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+  int f=0;
+  candidate_rec cr;
+  mf.read((char*)&cr,sizeof(candidate_rec));
+  while(mf && f==0)
+
+  { if(numb==cr.get_cand_code())
+    { f=1;
+      long pos;
+      pos=mf.tellg();
+      pos-=sizeof(candidate_rec);
+      mf.seekg(pos,ios::beg);
+      cr.up_count();
+      }
+      mf.read((char*)&cr,sizeof(candidate_rec));
+      }
+
+*/
+
+
+
+void vote::append_cand_rec_file()
+{ clrscr();
+
+  ofstream mf;
+
+  mf.open("candidate.dat",ios::binary|ios::app);
+
+  candidate_rec cr;
+
+  if(!mf)
+  { cout<<"\n\t\tTHE STREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+  cr.getdata_cand();
+
+  mf.write((char*)&cr,sizeof(candidate_rec));
+
+  mf.close();
+
+  }
+
+
+
+void vote::add_voter_rec()
+{ clrscr();
+
+  ofstream mf;
+
+  mf.open("voter.dat", ios::binary);
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+  voter_rec vr;
+
+  char ch;
+
+  do{
+     vr.getdata_voter();
+     mf.write((char*)&vr, sizeof(voter_rec));
+     cout<<"\n\t\tDo you want to enter a new item? : ";
+     cin>>ch;
+     }while(ch=='Y' || ch=='y');
+
+     mf.close();
+}
+
+
+
+void vote::display_voter_rec()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat", ios::binary|ios::in);
+
+  if(!mf)
+
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+  voter_rec vr;
+
+  int n=1;
+
+  cout<<"\n\t________________________VOTER INFORMATION LIST___________________________";
+
+  mf.read((char*)&vr, sizeof(voter_rec));
+
+  while(mf)
+  {cout<<"\n\t\tRECORD NUMBER: "<<n;
+
+   vr.showdata_voter();
+
+   cout<<"\n\t\t___________________________";
+
+   mf.read((char*)&vr, sizeof(voter_rec));
+
+   n++;
+   }
+
+   mf.close();
+}
+
+
+
+
+void vote::search_voter_rec_code()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat", ios::binary);
+
+  int f=0;
+
+  int num;
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED!!";
+    exit(0);
+   }
+
+   cout<<"\n\t\tEnter the voter ID code of whom you are searching for : ";
+   cin>>num;
+
+   voter_rec vr;
+
+   mf.read((char*)&vr, sizeof(voter_rec));
+
+   while(mf && f==0)
+   {
+       if(vr.get_voter_code() == num)
+
+       {vr.showdata_voter();
+	f=1;
+	}
+
+    mf.read((char*)&vr,sizeof(voter_rec));
+
+    }
+
+    if(f==0)
+
+    cout<<"\n\t\tNo such item was to be found";
+
+    mf.close();
+
+}
+
+
+
+void vote::search_voter_name()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat",ios::binary);
+
+  int f=0;
+
+  char name[20];
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM NOT CREATED!!";
+    exit(0);
+   }
+
+  voter_rec vr;
+
+  cout<<"\\t\tEnter the name of the voter : ";
+  gets(name);
+
+  mf.read((char*)&vr, sizeof(voter_rec));
+
+  while(mf && f==0)
+  {
+    if(strcmpi(vr.get_voter_name(),name)==0)
+     {vr.showdata_voter();
+      f=1;
+      }
+    mf.read((char*)&vr, sizeof(voter_rec));
+
+   }
+
+    if(f==0)
+
+    cout<<"\n\t\tNo such candidate information was found";
+
+    mf.close();
+}
+
+
+
+void vote::search_voter_name_all()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat",ios::binary);
+
+  char name[20];
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+   voter_rec vr;
+
+   cout<<"\n\tEnter the name of the voter that you want to find:";
+   gets(name);
+
+   mf.read((char*)&vr, sizeof(voter_rec));
+
+   while(mf)
+   {
+
+    if(strcmpi(vr.get_voter_name(),name)==0)
+
+     vr.showdata_voter();
+
+     mf.read((char*)&vr, sizeof(voter_rec));
+   }
+
+
+}
+
+
+
+
+void vote::delete_voter_rec()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat",ios::binary);
+
+  ofstream nf;
+
+  nf.open("n_voter.dat",ios::binary);
+
+  char name[20];
+
+  if(!mf || !nf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+   voter_rec vr;
+
+   int num,f=0;
+
+   cout<<"\n\t\tEnter the code of the voter: ";
+   cin>>num;
+
+   mf.read((char*)&vr, sizeof(voter_rec));
+
+   while(mf)
+   { if(num!=vr.get_voter_code())
+     nf.write((char*)&vr, sizeof(voter_rec));
+
+     mf.read((char*)&vr, sizeof(voter_rec));
+    }
+
+    mf.close();
+    nf.close();
+
+    if(f==0)
+
+    cout<<"\n\t\tRecord not found for deletion";
+
+    remove("voter.dat");
+
+    rename("n_voter.dat","voter.dat");
+}
+
+
+
+
+
+void vote::modify_voter_rec()
+{ clrscr();
+
+  fstream mf;
+
+  mf.open("voter.dat",ios::binary|ios::in|ios::out);
+
+  if(!mf)
+
+  {cout<<"\n\t\tTHE STREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+
+  int f=0;
+
+  voter_rec vr;
+
+  int num;
+
+  cout<<"\n\t\tEnter the voter ID code of voter you whose info you want to alter : ";
+
+  cin>>num;
+
+  mf.read((char*)&vr,sizeof(voter_rec));
+
+  while(mf && f==0)
+
+  {if(num==vr.get_voter_code())
+    { f=1;
+      long pos;
+      pos=mf.tellg();
+      pos-=sizeof(voter_rec);
+      mf.seekg(pos,ios::beg);
+     //mf.seekg(-sizeof(candidate_rec), ios:cur);  better to use the other method
+      vr.getdata_voter();
+     }
+
+     mf.read((char*)&vr,sizeof(voter_rec));
+
+    }
+
+  }
+
+
+
+void vote::append_voter_rec_file()
+{ clrscr();
+
+  ofstream mf;
+
+  mf.open("voter.dat",ios::binary|ios::app);
+
+  voter_rec vr;
+
+  if(!mf)
+
+  {cout<<"\n\t\tTHE STREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+
+  vr.getdata_voter();
+
+  mf.write((char*)&vr,sizeof(voter_rec));
+
+  mf.close();
+
+  }
+
+ /*
+
+void vote::list_cand_name()
+{ clrscr();
+  ifstream mf;
+  mf.open("candidate.dat", ios::binary|ios::in);
+  if(!mf)
+  {cout<<"STREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+  candidate_rec cr;
+  int n=1,p;
+  char q[25]=" ";
+  cout<<"________________________CANDIDATE LIST___________________________";
+  mf.read((char*)&cr, sizeof(candidate_rec));
+  while(mf)
+  {cout<<"\n\t\tRECORD NUMBER: "<<n;
+   p=cr.get_cand_code();
+   cout<<"\nID : "<<p;
+   strcpy (q,cr.get_cand_name());
+   cout<<"\tNAME: "<<q;
+   cout<<"\n\t\t___________________________";
+   mf.read((char*)&cr, sizeof(candidate_rec));
+   n++;
+   }
+   mf.close();
+}
+
+
+*/            //The above function is not required at this instant. CAN be deleted later.
+
+void vote::list_voter_name()
+{ clrscr();
+
+  ifstream mf;
+
+  mf.open("voter.dat", ios::binary|ios::in);
+
+  if(!mf)
+  { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+    exit(0);
+   }
+
+  voter_rec vr;
+
+  int n=1,p;
+
+  char q[25];
+
+  cout<<"\n________________________VOTER LIST___________________________";
+
+  mf.read((char*)&vr, sizeof(voter_rec));
+
+  while(mf)
+  { cout<<"\n\t\tRECORD NUMBER: "<<n;
+    p=vr.get_voter_code();
+    cout<<"\n\tID : "<<p;
+    strcpy(q,vr.get_voter_name());
+    cout<<"\tNAME: "<<q;
+    cout<<"\n\t\t___________________________";
+    mf.read((char*)&vr, sizeof(voter_rec));
+    n++;
+   }
+
+   mf.close();
+
+}
+
+
+
+
+/*void vote::voter_sort()
+{ int i=0, j;
+  voter_rec *arr,vr;
+  fstream mf;
+  mf.open("voter.dat",ios::binary|ios::in);
+  if(!mf)
+  {cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+   exit(0);
+   }
+   mf.read((char*)&vr, sizeof(voter_rec));
+   while(mf)
+   {i++;
+    mf.read((char*&vr, sizeof(voter_rec));
+    }
+    int size;
+    size=i;
+    arr=new voter_rec[i];    */
+
+//complete the above later if required...!!!
+
+
+void vote::voting()
+{   fstream mf;
+
+    mf.open("voter.dat",ios::binary | ios::beg | ios::in | ios::out);
+
+    fstream nf;
+
+    nf.open("candidate.dat",ios::binary | ios::beg | ios::in | ios::out);
+
+    if(!mf || !nf)
+    { cout<<"\n\t\tSTREAM HASN'T BEEN CREATED";
+      getch();
+      exit(0);
+     }
+
+     int num;
+
+     cout<<"\n\t\tEnter your voter id:";
+
+     cin>>num;
+
+     voter_rec vr;
+
+     candidate_rec cr;
+
+     mf.read((char*)&vr,sizeof(voter_rec));
+
+     while(mf)
+     {
+
+	  if(vr.get_voter_code()==num)
+	  {
+		    clrscr();
+
+		    cout<<"\n\t\tYour name has been found in the voter list";
+		    int filch = vr.get_vst();
+
+		    if(filch!=0)
+		    {cout<<"\n\t\tYou have already voted "<<filch<<" ";}
+		    else
+		    {   clrscr();
+
+			     cout<<"\n\t\tYou haven't yet cast the vote\n ";
+			     cout<<filch<<"\n";
+			     cout<<"\n\t\tPress any key to continue ";
+
+			     getch();
+
+			     clrscr();
+
+			     cout<<"\n\t\tPlease choose the candidate that you wish to vote for:- ";
+
+			     nf.read((char*)&cr,sizeof(candidate_rec));
+
+			     int rn=1;
+
+			     int p;
+
+			     char q[30];
+			     cout<<"\n\t\tChoose from the given list of candidates:- ";
+
+				 while(nf)
+				 {
+
+					   cout<<"\n\t\tRECORD NUMBER: "<<rn;
+
+					   cr.showdata_cand_2();
+
+					   cout<<"\n\t\t___________________________";
+
+					   nf.read((char*)&cr, sizeof(candidate_rec));
+
+					   rn++;
+
+				 }
+
+			     int num2;
+
+
+			     cout<<"\n\t\tEnter the CANDIDATE ID of the person that you want to vote :\n\t\t\t ";
+
+			     cin>>num2;
+
+			     cout<<"\n\t\tIT REACHES HERE";
+
+			     getch();
+
+			     int fff=0;
+
+			     cout<<"\n\t\tIT REACHES HERE TOO";
+
+			     getch();
+
+
+			     nf.clear();
+
+			     nf.seekg(0,ios::beg);
+
+			     cout<<"\n\t\tIT REACHES HERE THEN AND NOW";
+
+			     nf.read((char*)&cr,sizeof(candidate_rec));
+
+					 while(nf&&(fff==0))
+					 {
+					   cout<<"\n\n\t\t\ddt\tHERE GOES LOOP !";
+					   getch();
+
+					   if(cr.get_cand_code()==num2)
+					   {
+						 cout<<"\n\n\t\tTAKE A BREATH...IT goes INTO THE IF STATEMENT";
+						 cr.up_count();
+						 vr.up_vst();
+						 nf.write((char*)&cr, sizeof(candidate_rec));
+						 mf.write((char*)&vr, sizeof(voter_rec));
+						 fff=1;
+						 cout<<"\n\n\t\tvoting successfull";
+						 getch();
+					   }
+
+					    nf.read((char*)&cr,sizeof(candidate_rec));
+
+
+					  }
+
+
+			     if(fff==0)
+			     { cout<<"\n\t\tSorry Candidate not found to vote for";
+			       exit(0);
+			     }
+
+
+
+			}
+	     }
+
+	     mf.read((char*)&vr,sizeof(voter_rec));
+
+
+     }
+
+
+
+
+
+}
+
+
+
+void vote::winner()
+{
+  ifstream mf;
+  int big=-45;
+  mf.open("candidate.dat",ios::binary);        //small part..will do it later
+
+  if(!mf)
+  {cout<<"Stream not created";
+   getch();
+   exit(0);
+   }
+
+   int x,flag=0;
+
+   candidate_rec cr;
+
+   mf.read((char*)&cr,sizeof(candidate_rec));
+
+   while(!mf.eof())
+
+   { x=cr.get_count();
+
+     if(x>big)
+     big=x;
+
+
+     mf.read((char*)&cr, sizeof(candidate_rec));
+
+    }
+
+   mf.seekg(0,ios::beg);
+
+   mf.read((char*)&cr,sizeof(candidate_rec));
+
+   while(mf&& flag!=1)
+   {
+     if(cr.get_count()==big)
+     {
+       cout<<cr.get_cand_code()<<" is the winner with the maximum votes";
+
+       cr.showdata_cand_2();
+
+       cout<<"No. of votes: "<<cr.get_count();
+
+       getch();
+
+       flag=1;
+
+       }
+
+      else
+
+      flag=0;
+
+      mf.read((char*)&cr,sizeof(candidate_rec));
+
+    }
+
+
+}
+//THIS IS THE MAIN MENU AND THE ALL CONTROL VOID MAIN...............
+
+
+void main()
+
+{      clrscr();
+
+       vote v;
+
+       int chk;
+
+       char yn1,yn2,yn3,yn4,yn5,yn6;
+
+       chk=discription();
+       if(chk==0)
+       {cout<<"\n\t\tWrong Password";
+	getch();
+	}
+
+
+       intro();
+      do{
+
+       clrscr();
+
+       int op1;
+
+       cout<<"\n\n________________MAIN__MENU__________________";
+
+       cout<<"\nÞ 1Þ EDIT MENU";
+
+       cout<<"\nÞ 2Þ DISPLAY MENU";
+
+       cout<<"\nÞ 3Þ VOTER LIST(just a list)";
+
+       cout<<"\nÞ 4Þ VOTE";
+
+       cout<<"\nÞ 5Þ WINNER";
+
+       cout<<"\nÞ 6Þ EXIT";
+
+       cout<<"\n\tEnter your option: ";
+
+       cin>>op1;
+
+       switch(op1)
+       {                                //op1 loop open
+
+	 case 1:{ clrscr();             //op1.case1 open
+
+
+
+			      do{       //do-while open
+
+				    int op2;
+
+				    clrscr();
+
+				    cout<<"\nÞ 1Þ ADD CANDIDATE RECORD";
+
+				    cout<<"\nÞ 2Þ DELETE CANDIDATE RECORD";
+
+				    cout<<"\nÞ 3Þ MODIFY CANDIDATE RECORD";
+
+				    cout<<"\nÞ 4Þ APPEND & ADD CANDIDATE RECORD";
+
+				    cout<<"\nÞ 5Þ ADD VOTER RECORD";
+
+				    cout<<"\nÞ 6Þ DELETE VOTER RECORD";
+
+				    cout<<"\nÞ 7Þ MODIFY CANDIDATE RECORD";
+
+				    cout<<"\nÞ 8Þ APPEND & ADD VOTER RECORD";
+
+				    cout<<"\nÞ 9Þ Enter any other key to exit";
+
+				    cout<<"\n\tEnter your option: ";
+
+				    cin>>op2;
+
+				    switch(op2)
+
+				     {     //op2 loop open
+
+					  case 1: {v.add_cand_rec();
+						   break;
+						   }
+
+					  case 2: {v.delete_cand_rec();
+						   break;
+						   }
+
+					  case 3: {v.modify_cand_rec();
+						   break;
+						   }
+
+					  case 4: {v.append_cand_rec_file();
+						   break;
+						   }
+
+					  case 5: {v.add_voter_rec();
+						   break;
+						   }
+
+					  case 6: {v.delete_voter_rec();
+						   break;
+						   }
+
+					  case 7: {v.modify_voter_rec();
+						   break;
+						   }
+
+					  case 8: {v.append_voter_rec_file();
+						   break;
+						   }
+
+					  default:{cout<<"\n\tINVALID INPUT!";
+						   }
+
+				      }    //op2 loop closed
+
+				    cout<<"\n\t\tDo you want to go to the previous menu?";
+				    cin>>yn1;
+
+			       }while(yn1=='Y' || yn1=='y');     // do-while close
+
+				    break;
+
+	       }           //op1.case1 loop close
+
+
+
+
+
+
+	 case 2: {                                       //op1.case 2 loop open
+
+
+		   do{
+
+		   int op3;
+
+		   clrscr();
+
+		   cout<<"\n__________CANDIDATE__________";
+
+		   cout<<"\nÞ 1Þ Display candidate records";
+
+		   cout<<"\nÞ 2Þ Search for candidate using code";
+
+		   cout<<"\nÞ 3Þ Search for candidate using name";
+
+		   cout<<"\nÞ 4Þ Search for candidate using name(all with same name)";
+
+		   cout<<"\n___________VOTER_____________";
+
+
+		   cout<<"\nÞ 5Þ Display voter records";
+
+		   cout<<"\nÞ 6Þ Search for voter record using code";
+
+		   cout<<"\nÞ 7Þ Search for voter record using name";
+
+		   cout<<"\nÞ 8Þ Search for voter record using name(all with same name)";
+
+		   cout<<"\nÞ 9Þ Enter any other value to exit";
+
+		   cout<<"\n\tEnter your option: ";
+
+		   cin>>op3;
+
+
+				     switch(op3)
+
+				     {              //op3 loop open
+
+					  case 1:   { v.display_cand_rec();
+						      break;
+						     }
+
+					  case 2:   { v.search_cand_rec_code();
+						      break;
+						     }
+
+					  case 3:   { v.search_cand_name();
+						      break;
+						     }
+
+					  case 4:   { v.search_cand_name_all();
+						      break;
+						     }
+
+					  case 5:   { v.display_voter_rec();
+						      break;
+						     }
+
+					  case 6:   { v.search_voter_rec_code();
+						      break;
+						     }
+
+					  case 7:   { v.search_voter_name();
+						      break;
+						     }
+
+					  case 8:   { v.search_voter_name_all();
+						      break;
+						      }
+
+					  default:  { cout<<"\n\tIVALID";}
+
+
+				      }                //op3 close
+
+
+				      cout<<"\n\n\t\tWant to go back to the previous menu?(Y/N): ";
+				      cin>>yn2;
+
+				      }while(yn2=='Y' || yn2=='y');
+
+		   break;
+
+		 }                                    //op1.case 2 closed
+
+
+
+
+
+	 case 3: {                                    //op1.case 3 open
+
+		  do{
+
+
+		  v.list_voter_name();
+
+		  cout<<"\n\t\tWant to go back to the previous menu?(Y/N): ";
+		  cin>>yn6;
+
+		  }while(yn6=='Y' || yn6=='y');
+
+		  break;
+
+		  }
+
+
+
+	 case 4: {                                    //op1.case 3 open
+
+		  do{
+
+
+		  v.voting();
+
+		  cout<<"\n\t\tWant to go back to the previous menu?(Y/N): ";
+		  cin>>yn3;
+
+		  }while(yn3=='Y' || yn3=='y');
+
+		  break;
+
+		  }                                   //op1.case 3 close
+
+
+
+	 case 5: {                                    //op1.case 4 open
+
+		  do{
+
+
+		  v.winner();
+
+		  cout<<"\n\t\tWant to go back to the previous menu?(Y/N): ";
+		  cin>>yn5;
+
+		  }while(yn5=='Y' || yn5=='y');
+
+		  break;
+
+		  }                                   //op1.case 4 close
+
+
+
+	 case 6: {cout<<"\n\tBYE BYE!!!";                 //op1.case 5 open
+		  getch();
+		  exit(0);
+		  }                                      //op1.case 5 close
+
+
+	 default:{cout<<"\n\tPrev menu";
+		  }
+
+
+	}
+
+	cout<<"\n\t\tWant to go back to the main menu?(Y/N): ";
+	cin>>yn4;
+
+						      //op1 loop close
+
+
+       }while(yn4=='Y' || yn4=='y');
+
+
+
+
+}                                                       //close void main
